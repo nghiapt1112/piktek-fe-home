@@ -1,9 +1,10 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react';
 // utils
-import axios from '../utils/axios';
+// import axios from '../utils/axios';
 import { isValidToken, setSession } from '../utils/jwt';
 // @types
 import { ActionMap, AuthState, AuthUser, JWTContextType } from '../@types/authentication';
+import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
@@ -117,9 +118,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post('/api/account/login', {
-      email,
-      password
+    const response = await axios.post('https://dev.piktekk.com/api/auth/login', {
+      Username: 'tuannghiatoregister@gmail.com',
+      Password: 'vnAay12a@!@#'
     });
     const { accessToken, user } = response.data;
 
