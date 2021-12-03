@@ -118,10 +118,13 @@ function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post('http://localhost:3001/dev/api/auth/login', {
-      Username: email,
-      Password: password
-    });
+    const response = await axios.post(
+      'https://un21m8os6k.execute-api.ap-southeast-1.amazonaws.com/dev/api/auth/login',
+      {
+        Username: email,
+        Password: password
+      }
+    );
     const { accessToken, user } = response.data;
 
     setSession(accessToken);
