@@ -118,9 +118,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post('https://dev.piktekk.com/api/auth/login', {
-      Username: 'tuannghiatoregister@gmail.com',
-      Password: 'vnAay12a@!@#'
+    const response = await axios.post('http://localhost:3001/dev/api/auth/login', {
+      Username: email,
+      Password: password
     });
     const { accessToken, user } = response.data;
 

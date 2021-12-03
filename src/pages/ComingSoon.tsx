@@ -65,7 +65,7 @@ const SeparatorStyle = styled(Typography)(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function ComingSoon() {
-  const countdown = useCountdown(new Date('07/07/2022 21:30'));
+  const countdown = useCountdown(new Date('11/14/2021 00:01'));
 
   return (
     <RootStyle title="Coming Soon | Minimal-UI">
