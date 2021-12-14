@@ -73,6 +73,7 @@ const sidebarConfig = [
           { title: 'product', path: PATH_DASHBOARD.eCommerce.productById },
           { title: 'list', path: PATH_DASHBOARD.eCommerce.list },
           { title: 'create', path: PATH_DASHBOARD.eCommerce.newProduct },
+          { title: 'create2', path: PATH_DASHBOARD.eCommerce.newProduct2 },
           { title: 'edit', path: PATH_DASHBOARD.eCommerce.editById },
           { title: 'checkout', path: PATH_DASHBOARD.eCommerce.checkout },
           { title: 'invoice', path: PATH_DASHBOARD.eCommerce.invoice }

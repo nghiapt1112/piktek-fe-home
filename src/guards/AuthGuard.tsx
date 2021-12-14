@@ -16,6 +16,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
   const { pathname } = useLocation();
   const [requestedLocation, setRequestedLocation] = useState<string | null>(null);
 
+  console.log('[Authgard] checking user logined ?' + isAuthenticated);
   if (!isAuthenticated) {
     if (pathname !== requestedLocation) {
       setRequestedLocation(pathname);

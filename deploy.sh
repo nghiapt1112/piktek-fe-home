@@ -2,7 +2,7 @@ echo 'building...'
 rm -rf build && yarn build
 
 echo 'syncing to s3'
-aws s3 sync ./build/ s3://nnwizard-dev-fedeployment --profile piktekk --delete
+aws s3 sync ./build/ s3://demo-deploy-fe --profile piktekk --delete
 
 
 echo 'removing cache'

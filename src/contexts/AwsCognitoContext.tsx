@@ -101,7 +101,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
               const attributes = await getUserAttributes(user);
               const token = session?.getIdToken().getJwtToken();
               // use the token or Bearer depend on the wait BE handle, by default amplify API only need to token.
-              axios.defaults.headers.common.Authorization = token;
+              // if (token != null) {
+              //   axios.defaults.headers.common.Authorization = token;
+              // }
               dispatch({
                 type: Types.auth,
                 payload: { isAuthenticated: true, user: attributes }

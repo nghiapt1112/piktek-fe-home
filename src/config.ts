@@ -22,3 +22,13 @@ export const auth0Config = {
 export const mapConfig = process.env.REACT_APP_MAP_MAPBOX;
 
 export const googleAnalyticsConfig = process.env.REACT_APP_GA_MEASUREMENT_ID;
+
+export const proxy_path = {
+  basePath: 'https://dev.piktekk.com/api',
+  auth: {
+    login: '/auth/login'
+  },
+  user: {
+    profile: '/user/profile'
+  }
+};

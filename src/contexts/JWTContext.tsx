@@ -1,10 +1,11 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react';
 // utils
-// import axios from '../utils/axios';
-import { isValidToken, setSession } from '../utils/jwt';
+import { isValidToken } from '../utils/jwt';
 // @types
 import { ActionMap, AuthState, AuthUser, JWTContextType } from '../@types/authentication';
-import axios from 'axios';
+import api from '../utils/api';
+import { proxy_path } from '../config';
+// import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
@@ -79,11 +80,11 @@ function AuthProvider({ children }: { children: ReactNode }) {
     const initialize = async () => {
       try {
         const accessToken = window.localStorage.getItem('accessToken');
-
         if (accessToken && isValidToken(accessToken)) {
-          setSession(accessToken);
+          // setSession(accessToken);
+          console.log('[JWTContext]_AuthProvider, accessToken:' + accessToken);
 
-          const response = await axios.get('/api/account/my-account');
+          const response = await api.get(proxy_path.user.profile);
           const { user } = response.data;
 
           dispatch({
@@ -118,13 +119,13 @@ function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post('/api/auth/login', {
+    const response = await api.post(proxy_path.auth.login, {
       Username: email,
       Password: password
     });
     const { accessToken, user } = response.data;
 
-    setSession(accessToken);
+    // setSession(accessToken);
     dispatch({
       type: Types.Login,
       payload: {
@@ -134,7 +135,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const register = async (email: string, password: string, firstName: string, lastName: string) => {
-    const response = await axios.post('/api/account/register', {
+    const response = await api.post('/api/account/register', {
       email,
       password,
       firstName,
@@ -152,7 +153,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async () => {
-    setSession(null);
+    // setSession(null);
     dispatch({ type: Types.Logout });
   };
 

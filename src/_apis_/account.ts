@@ -104,6 +104,7 @@ mock.onPost('/api/account/register').reply(async (config) => {
 
 mock.onGet('/api/account/my-account').reply((config) => {
   try {
+    // @ts-ignore
     const { Authorization } = config.headers;
 
     if (!Authorization) {
