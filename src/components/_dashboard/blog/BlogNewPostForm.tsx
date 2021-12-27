@@ -88,7 +88,7 @@ export default function BlogNewPostForm() {
     validationSchema: NewBlogSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
-        await fakeRequest(500);
+        await fakeRequest(500, values);
         resetForm();
         handleClosePreview();
         setSubmitting(false);

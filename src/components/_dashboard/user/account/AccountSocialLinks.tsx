@@ -48,7 +48,7 @@ export default function AccountSocialLinks({ myProfile }: { myProfile: Profile }
       twitterLink: myProfile.twitterLink
     },
     onSubmit: async (values, { setSubmitting }) => {
-      await fakeRequest(500);
+      await fakeRequest(500, values);
       setSubmitting(false);
       alert(JSON.stringify(values, null, 2));
       enqueueSnackbar('Save success', { variant: 'success' });

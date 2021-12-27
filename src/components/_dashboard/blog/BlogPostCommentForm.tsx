@@ -42,7 +42,7 @@ export default function BlogPostCommentForm() {
     validationSchema: CommentSchema,
     onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
       try {
-        await fakeRequest(500);
+        await fakeRequest(500, values);
         resetForm();
         setSubmitting(false);
         enqueueSnackbar('Post success', { variant: 'success' });

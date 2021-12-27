@@ -47,7 +47,7 @@ export default function ProductDetailsReviewForm({
     },
     validationSchema: ReviewSchema,
     onSubmit: async (values, { resetForm, setSubmitting }) => {
-      await fakeRequest(500);
+      await fakeRequest(500, values);
       alert(JSON.stringify(values, null, 2));
       onClose();
       resetForm();

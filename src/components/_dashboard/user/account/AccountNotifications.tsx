@@ -51,7 +51,7 @@ export default function AccountNotifications({ notifications, sx }: AccountNotif
       applicationBlog: notifications.applicationBlog
     },
     onSubmit: async (values, { setSubmitting }) => {
-      await fakeRequest(500);
+      await fakeRequest(500, values);
       setSubmitting(false);
       alert(JSON.stringify(values, null, 2));
       enqueueSnackbar('Save success', { variant: 'success' });

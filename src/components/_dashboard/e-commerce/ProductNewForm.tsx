@@ -103,12 +103,12 @@ export default function ProductNewForm({ isEdit, currentProduct }: ProductNewFor
     validationSchema: NewProductSchema,
     onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
       try {
-        await fakeRequest(500);
+        await fakeRequest(500, values);
         resetForm();
         setSubmitting(false);
         enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', { variant: 'success' });
         navigate(PATH_DASHBOARD.eCommerce.list);
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
         setSubmitting(false);
         setErrors(error);
@@ -123,7 +123,7 @@ export default function ProductNewForm({ isEdit, currentProduct }: ProductNewFor
     (acceptedFiles) => {
       setFieldValue(
         'images',
-        acceptedFiles.map((file: File | string) =>
+        acceptedFiles.map((file: any) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file)
           })

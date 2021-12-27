@@ -62,7 +62,7 @@ export default function Payment() {
         address: values.address,
         subscription: 'premium'
       };
-      await fakeRequest(500);
+      await fakeRequest(500, values);
       if (values.method === 'paypal') {
         alert(
           JSON.stringify(

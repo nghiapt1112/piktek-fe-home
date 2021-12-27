@@ -41,7 +41,7 @@ export default function AccountBilling({ cards, addressBook, invoices }: Account
     },
     validationSchema: NewCardSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
-      await fakeRequest(500);
+      await fakeRequest(500, values);
       handleCancel();
       resetForm();
       setSubmitting(false);

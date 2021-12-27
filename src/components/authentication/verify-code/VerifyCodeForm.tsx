@@ -52,7 +52,7 @@ export default function VerifyCodeForm() {
     },
     validationSchema: VerifyCodeSchema,
     onSubmit: async () => {
-      await fakeRequest(500);
+      await fakeRequest(500, values);
       enqueueSnackbar('Verify success', { variant: 'success' });
       navigate(PATH_DASHBOARD.root);
     }
