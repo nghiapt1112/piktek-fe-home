@@ -123,8 +123,7 @@ export default function LandingHero() {
               <Button
                 size="large"
                 variant="contained"
-                component={RouterLink}
-                to={PATH_DASHBOARD.root}
+                onClick={() => window.open('https://admin.piktekk.com')}
                 startIcon={<Icon icon={flashFill} width={20} height={20} />}
               >
                 Live Preview
