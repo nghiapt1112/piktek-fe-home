@@ -12,11 +12,11 @@ jobs:
 
     - uses: actions/checkout@v1
 
-    env:
-        CI: false
-
     - name: Install dependencies
       run: yarn install
+
+    env:
+        CI: true
 
     - name: Build React App
       run: yarn build
