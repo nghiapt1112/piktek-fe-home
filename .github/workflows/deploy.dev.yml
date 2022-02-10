@@ -16,7 +16,7 @@ jobs:
       run: yarn install
 
     env:
-        CI: true
+        CI: false
 
     - name: Build React App
       run: yarn build
