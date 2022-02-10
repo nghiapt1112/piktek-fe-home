@@ -15,8 +15,7 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
-    env:
-        CI: false
+      CI: false
 
     - name: Build React App
       run: yarn build
