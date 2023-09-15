@@ -1,0 +1,47 @@
+name: Deploy dev
+
+on:
+  push:
+    branches:
+    - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v1
+
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Install dependencies
+      run: yarn
+
+    - name: Build React App
+      run: yarn build
+      env:
+        CI: true
+
+    - uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311
+      with:
+        args: --follow-symlinks --delete # --acl public-read # Needed if source_dir was root of repo --exclude '.git/*' --exclude '.github/*' --exclude '.github/*'
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.BOT_GA_STATICWEBSITES_ENG_AWS_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.BOT_GA_STATICWEBSITES_ENG_AWS_SECRET }} 
+        AWS_REGION: 'ap-southeast-1'   # optional: defaults to us-east-1
+        AWS_S3_BUCKET: piktekk-homepage
+        SOURCE_DIR: 'build'      # optional: defaults to entire repository
+
+        # Invalidate Cache in CFD
+    - name: invalidate
+      uses: chetan/invalidate-cloudfront-action@65a60c4d1af7dfe59c92acaaa390ba25f8f29a87
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.BOT_GA_STATICWEBSITES_ENG_AWS_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.BOT_GA_STATICWEBSITES_ENG_AWS_SECRET }} 
+        AWS_REGION: 'ap-southeast-1'
+        DISTRIBUTION: E3FS567HUBR5HG
+        PATHS: '/*'
